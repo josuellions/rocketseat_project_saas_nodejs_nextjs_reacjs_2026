@@ -1,0 +1,7 @@
+{
+    "extends": "@saas_node_next_react/ts-config/node.json",
+    "include": ["src/**/*"],
+    "compilerOptions": {
+    "types": ["node"]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@saas_node_next_react/auth",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "devDependencies": {
+    "@saas_node_next_react/eslint-config": "workspace:*",
+    "@saas_node_next_react/prettier": "workspace:*",
+    "@saas_node_next_react/ts-config": "workspace:*"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@saas_node_next_react/eslint-config/library"
+    ]
+  },
+  "prettier": "@saas_node_next_react/prettier",
+  "dependencies": {
+    "@casl/ability": "^6.8.1"
+  }
+}

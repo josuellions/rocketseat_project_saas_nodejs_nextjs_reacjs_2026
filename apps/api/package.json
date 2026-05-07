@@ -1,0 +1,23 @@
+{
+  "name": "@saas_node_next_react/api",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "tsx watch src/index.ts"
+  },
+  "dependencies": {
+     "@saas_node_next_react/auth": "workspace:*"
+  },
+  "devDependencies": {
+    "@saas_node_next_react/eslint-config": "workspace:*",
+    "@saas_node_next_react/prettier": "workspace:*",
+    "@saas_node_next_react/ts-config": "workspace:*",
+    "@types/node": "^25.6.1",
+    "tsx": "^4.21.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@saas_node_next_react/eslint-config/node"
+    ]
+  },
+  "prettier": "@saas_node_next_react/prettier"
+}
