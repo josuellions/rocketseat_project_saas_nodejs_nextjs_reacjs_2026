@@ -1,0 +1,25 @@
+{
+  "name": "saas_node_next_react",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
+    "check-types": "turbo run check-types"
+  },
+  "devDependencies": {
+    "@saas_node_next_react/prettier": "workspace:*",
+    "prettier": "^3.8.3",
+    "turbo": "^2.9.9"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@8.15.5",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "config/*"
+  ]
+}
