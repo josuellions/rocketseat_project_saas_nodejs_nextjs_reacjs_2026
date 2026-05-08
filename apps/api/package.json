@@ -9,6 +9,7 @@
   "dependencies": {
     "@fastify/cors": "^11.2.0",
     "@saas_node_next_react/auth": "workspace:*",
+    "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "fastify": "^5.8.5",
     "fastify-type-provider-zod": "^6.1.0",
@@ -19,6 +20,7 @@
     "@saas_node_next_react/eslint-config": "workspace:*",
     "@saas_node_next_react/prettier": "workspace:*",
     "@saas_node_next_react/ts-config": "workspace:*",
+    "@types/bcryptjs": "^3.0.0",
     "@types/node": "^25.6.1",
     "add": "^2.0.6",
     "pnpm": "^11.0.8",
