@@ -33,3 +33,10 @@ Projeto baseado em **Node, next e react** com desenvolvimento academico criar um
 ```bash
 npx create-turbo@latest
 ```
+
+---
+  - Create prisma
+
+```bash
+pnpm prisma init
+```

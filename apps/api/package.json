@@ -8,6 +8,7 @@
   "dependencies": {
     "@fastify/cors": "^11.2.0",
     "@saas_node_next_react/auth": "workspace:*",
+    "dotenv": "^17.4.2",
     "fastify": "^5.8.5",
     "fastify-type-provider-zod": "^6.1.0",
     "zod": "^4.4.3"
@@ -17,6 +18,7 @@
     "@saas_node_next_react/prettier": "workspace:*",
     "@saas_node_next_react/ts-config": "workspace:*",
     "@types/node": "^25.6.1",
+    "prisma": "^7.8.0",
     "tsx": "^4.21.0"
   },
   "eslintConfig": {
