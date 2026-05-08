@@ -1,0 +1,14 @@
+# Variables
+@BASE_URL_LOCAL = http://localhost:3333
+
+### 
+## LOCAL
+# @name users
+POST {{BASE_URL_LOCAL}}/users
+Content-Type: application/json
+
+{
+  "name": "Josuel",
+  "email":"josuel@email.com",
+  "password": "123teste"
+}
