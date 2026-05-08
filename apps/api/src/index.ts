@@ -1,6 +1,6 @@
 import { defineAbilityFor } from "@saas_node_next_react/auth";
 
-const ability = defineAbilityFor({ role : 'ADMIN' })
+const ability = defineAbilityFor({ id: "user-id" , role : 'ADMIN' })
 
 // const userCanInviteSomeoneElse = ability.can('invite', 'User');
 const userCanDeleteOtherUsers = ability.can('delete', 'User');
