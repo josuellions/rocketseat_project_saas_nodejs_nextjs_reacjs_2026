@@ -1,7 +1,7 @@
 import { AbilityBuilder} from '@casl/ability';
 import { type AppAbility } from ".";
 
-import { userSchema, type User } from './models/user';
+import { type User } from './models/user';
 import type { Role } from './subjects/roles';
 
 type Roles = Role;

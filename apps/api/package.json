@@ -2,10 +2,15 @@
   "name": "@saas_node_next_react/api",
   "version": "1.0.0",
   "scripts": {
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/http/server.ts",
+    "dev:base": "tsx watch src/index.ts"
   },
   "dependencies": {
-     "@saas_node_next_react/auth": "workspace:*"
+    "@fastify/cors": "^11.2.0",
+    "@saas_node_next_react/auth": "workspace:*",
+    "fastify": "^5.8.5",
+    "fastify-type-provider-zod": "^6.1.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@saas_node_next_react/eslint-config": "workspace:*",
