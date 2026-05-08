@@ -1,6 +1,9 @@
+import { z } from "zod";
+import { hash } from "bcryptjs";
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
-import { z } from "zod";
+
+import { prisma } from "@/lib/prisma";
 
 export async function createAccount(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post('/users', {
@@ -12,8 +15,27 @@ export async function createAccount(app:FastifyInstance) {
 
       })
     }
-  }, (req, res) => {
+  }, async (req, reply) => {
     const {name, email, password } = req.body;
-    return {message:'User created', response: {name, email, password}};
+
+    const userWithSameEmail = await prisma.user.findUnique({
+      where: { email }
+    })
+
+    if(userWithSameEmail) {
+      return reply.status(400).send({message: 'use with same e-mail alredy exists.'})
+    }
+    const rounds = 6;
+    const passwordHash = await hash(password, rounds);
+
+    const result = await prisma.user.create({
+      data: {
+        name,
+        email,
+        passwordHash
+      }
+    })
+
+    return reply.status(201).send({ result })
   })
 }
