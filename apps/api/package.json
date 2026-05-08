@@ -6,6 +6,9 @@
     "dev:base": "tsx watch src/index.ts",
     "migrations:create": "pnpm prisma migrate dev"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@fastify/cors": "^11.2.0",
     "@saas_node_next_react/auth": "workspace:*",
@@ -16,6 +19,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
     "@prisma/client": "6.16.3",
     "@saas_node_next_react/eslint-config": "workspace:*",
     "@saas_node_next_react/prettier": "workspace:*",
