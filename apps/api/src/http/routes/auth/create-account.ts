@@ -16,8 +16,20 @@ export async function createAccount(app:FastifyInstance) {
         name: z.string(),
         email: z.email(),
         password: z.string().min(6)
-
-      })
+      }),
+      response: {
+        400: z.object({
+          message: z.string()
+        }),
+        201: z.object({
+          result: z.object({
+              id: z.string(),
+              email: z.string(),
+              name: z.string().nullable(),
+              passwordHash: z.string().nullable()
+          }).nullable()
+        })
+      }
     }
   }, async (req, reply) => {
     const {name, email, password } = req.body;
