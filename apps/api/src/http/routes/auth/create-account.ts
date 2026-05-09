@@ -5,6 +5,8 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 
 import { prisma } from "@/lib/prisma";
 
+import STATUS_CODE  from "@/../../types/status";
+
 export async function createAccount(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post('/users', {
     schema: {
@@ -25,7 +27,7 @@ export async function createAccount(app:FastifyInstance) {
     })
 
     if(userWithSameEmail) {
-      return reply.status(400).send({message: 'use with same e-mail alredy exists.'})
+      return reply.status(STATUS_CODE.BAD_REQUEST).send({message: 'use with same e-mail alredy exists.'})
     }
     const rounds = 6;
     const passwordHash = await hash(password, rounds);
@@ -38,6 +40,6 @@ export async function createAccount(app:FastifyInstance) {
       }
     })
 
-    return reply.status(201).send({ result })
+    return reply.status(STATUS_CODE.CREATE).send({ result })
   })
 }
