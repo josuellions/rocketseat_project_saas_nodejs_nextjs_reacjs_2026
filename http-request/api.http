@@ -1,6 +1,10 @@
 # Variables
 @BASE_URL_LOCAL = http://localhost:3333
 
+@user_name = Josuel,
+@user_email = josuel@email.com
+@user_password = 123teste
+
 ### 
 ## LOCAL
 # @name users
@@ -8,9 +12,9 @@ POST {{BASE_URL_LOCAL}}/users
 Content-Type: application/json
 
 {
-  "name": "Josuel",
-  "email":"josuel@email.com",
-  "password": "123teste"
+  "name": "{{user_name}}",
+  "email": "{{user_email}}",
+  "password": "{{user_password}}"
 }
 
 ### 
@@ -19,6 +23,11 @@ POST {{BASE_URL_LOCAL}}/sessions/password
 Content-Type: application/json
 
 {
-  "email":"josuel@email.com",
-  "password": "123teste"
+  "email": "{{user_email}}",
+  "password": "{{user_password}}"
 }
+
+### 
+# @name user-get
+GET {{BASE_URL_LOCAL}}/user/profile
+Authorization: Bearer {{auth.response.body.token}}
