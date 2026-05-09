@@ -8,6 +8,8 @@ import { prisma } from "@/lib/prisma";
 export async function createAccount(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post('/users', {
     schema: {
+      tags: ["auth"],
+      summary: "Create a new account",
       body: z.object({
         name: z.string(),
         email: z.string().email(),
