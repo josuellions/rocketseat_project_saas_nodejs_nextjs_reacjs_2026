@@ -12,3 +12,13 @@ Content-Type: application/json
   "email":"josuel@email.com",
   "password": "123teste"
 }
+
+### 
+# @name auth
+POST {{BASE_URL_LOCAL}}/sessions/password
+Content-Type: application/json
+
+{
+  "email":"josuel@email.com",
+  "password": "123teste"
+}
