@@ -2,9 +2,11 @@
   "name": "@saas_node_next_react/api",
   "version": "1.0.0",
   "scripts": {
-    "dev": "tsx watch src/http/server.ts",
-    "dev:base": "tsx watch src/index.ts",
-    "migrations:create": "pnpm prisma migrate dev"
+    "env:load": "dotenv -e ../../.env --",
+    "dev": "pnpm env:load tsx watch src/http/server.ts",
+    "dev:base": "pnpm env:load tsx watch src/index.ts",
+    "database:manager:studio": "pnpm env:load prisma studio",
+    "database:migrations:create": "pnpm prisma migrate dev"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -15,6 +17,7 @@
     "@fastify/swagger": "^9.7.0",
     "@fastify/swagger-ui": "^5.2.6",
     "@saas_node_next_react/auth": "workspace:*",
+    "@saas_node_next_react/env": "workspace:*",
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "fastify": "^5.8.5",
@@ -31,7 +34,8 @@
     "@types/bcryptjs": "^3.0.0",
     "@types/node": "^25.6.1",
     "add": "^2.0.6",
-    "pnpm": "^11.0.8",
+    "dotenv-cli": "7.4.1",
+    "pnpm": "^8.15.5",
     "prisma": "6.16.3",
     "tsx": "^4.21.0"
   },

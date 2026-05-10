@@ -1,0 +1,7 @@
+{
+    "extends": "@saas_node_next_react/ts-config/library.json",
+    "include": ["index.ts"],
+    "compilerOptions": {
+      "types": ["node"]
+    }
+}
