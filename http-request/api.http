@@ -31,3 +31,22 @@ Content-Type: application/json
 # @name user-get
 GET {{BASE_URL_LOCAL}}/user/profile
 Authorization: Bearer {{auth.response.body.token}}
+
+### 
+# @name auth-recover-password
+POST {{BASE_URL_LOCAL}}/user/password/recover
+Content-Type: application/json
+
+{
+  "email": "{{user_email}}"
+}
+
+### 
+# @name auth-reset-password
+POST {{BASE_URL_LOCAL}}/user/password/reset
+Content-Type: application/json
+
+{
+  "code": "{{auth-recover-password.response.body.result.code}}",
+  "password": "new_password_reset"
+}
