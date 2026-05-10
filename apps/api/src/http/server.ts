@@ -15,6 +15,7 @@ import { authenticateWithPassword } from './routes/auth/authenticate-with-passwo
 import { authenticateWithGithub } from './routes/auth/authenticate-with-github';
 import { requestPasswordRecover } from './routes/auth/request-password-recover';
 import { requestPasswordReset } from './routes/auth/request-password-reset';
+import { createOrganization } from './routes/orgs/create-organization';
 import { createAccount } from './routes/auth/create-account';
 import { getUserProfile } from './routes/auth/get-profile';
 import { errorHandler } from './error-handler';
@@ -30,42 +31,23 @@ app.setValidatorCompiler(validatorCompiler);
 app.setErrorHandler(errorHandler);
 
 app.register(fastifySwagger, {
-    openapi: {
-      openapi: '3.0.0',
-
+  openapi: {
     info: {
       title: 'SAAS-NEXT-PROJECTS',
       description: 'Full-stack SaaS app with multi-tenant & RBAC',
       version: '1.0.0',
     },
-
     components: {
       securitySchemes: {
-        Authorization: {
-          type: 'apiKey',
-          in: 'header',
-          name: 'Authorization',
-          description: 'JWT obtained from authentication route.',
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
         },
       },
     },
-
-    security: [
-      {
-        Authorization: [],
-      },
-    ],
-
-    servers: [],
   },
-
   transform: jsonSchemaTransform,
-
-  // You can also create transform with custom skiplist of endpoints that should not be included in the specification:
-  //
-  // transform: createJsonSchemaTransform({
-  //   skipList: [ '/documentation/static/*' ]
-  // })
 });
 
 app.register(fastifySwaggerUI, {
@@ -79,6 +61,7 @@ app.register(fastifyJwt, {
 app.register(fastifyCors);
 app.register(createAccount);
 app.register(getUserProfile);
+app.register(createOrganization);
 app.register(requestPasswordReset);
 app.register(requestPasswordRecover);
 app.register(authenticateWithGithub);
