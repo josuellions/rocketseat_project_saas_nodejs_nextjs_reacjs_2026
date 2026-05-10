@@ -28,12 +28,12 @@ Content-Type: application/json
 }
 
 ### 
-# @name user-get
+# @name user_get
 GET {{BASE_URL_LOCAL}}/user/profile
 Authorization: Bearer {{auth.response.body.token}}
 
 ### 
-# @name auth-recover-password
+# @name auth_recover_password
 POST {{BASE_URL_LOCAL}}/user/password/recover
 Content-Type: application/json
 
@@ -42,11 +42,11 @@ Content-Type: application/json
 }
 
 ### 
-# @name auth-reset-password
+# @name auth_reset_password
 POST {{BASE_URL_LOCAL}}/user/password/reset
 Content-Type: application/json
 
 {
-  "code": "{{auth-recover-password.response.body.result.code}}",
+  "code": "{{auth_recover_password.response.body.result.code}}",
   "password": "new_password_reset"
 }

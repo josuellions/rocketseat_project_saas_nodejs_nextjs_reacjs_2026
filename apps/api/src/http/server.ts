@@ -14,6 +14,8 @@ import { createAccount } from './routes/auth/create-account';
 import { authenticateWithPassword } from './routes/auth/authenticate-with-password';
 import { getUserProfile } from './routes/auth/get-profile';
 import { errorHandler } from './error-handler';
+import { requestPasswordRecover } from './routes/auth/request-password-recover';
+import { requestPasswordReset } from './routes/auth/request-password-reset';
 
 const port = 3333;
 const app = fastify().withTypeProvider<ZodTypeProvider>();
@@ -50,9 +52,11 @@ app.register(fastifyJwt, {
 })
 
 app.register(fastifyCors);
-app.register(createAccount)
+app.register(createAccount);
+app.register(getUserProfile);
+app.register(requestPasswordReset);
+app.register(requestPasswordRecover);
 app.register(authenticateWithPassword);
-app.register(getUserProfile)
 
 app.listen({ port }).then(() => {
   console.info(`HTTP server running, port: ${port}`)
