@@ -1,21 +1,19 @@
 import { z } from "zod";
-import { hash } from "bcryptjs";
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 
 import { prisma } from "@/lib/prisma";
 
+import { auth } from "@/http/middlewares/auth";
 import STATUS_CODE  from "@/../../types/status";
+import { BadRequestError } from "../_errors/error-bad-request";
 
 export async function getUserProfile(app:FastifyInstance) {
-  app.withTypeProvider<ZodTypeProvider>().get('/user/profile', {
+  app.withTypeProvider<ZodTypeProvider>().register(auth).get('/user/profile', {
     schema: {
-      tags: ["profile"],
+      tags: ["auth"],
       summary: "Get authenticated user profile",
       response: {
-        400: z.object({
-          message: z.string()
-        }),
         200: z.object({
           result: z.object({
               id: z.uuid(),
@@ -27,7 +25,7 @@ export async function getUserProfile(app:FastifyInstance) {
       }
     }
   }, async (req, reply) => {
-    const { sub } = await req.jwtVerify<{sub: string}>();
+    const userId  = await req.getCurrentUserId();
 
     const result = await prisma.user.findUnique({
       select:{
@@ -37,12 +35,12 @@ export async function getUserProfile(app:FastifyInstance) {
         avatarUrl: true
       },
       where: { 
-        id: sub 
+        id: userId 
       }
     })
 
     if(!result) {
-      return reply.status(STATUS_CODE.BAD_REQUEST).send({message: 'use with same e-mail alredy exists.'})
+     throw new BadRequestError('use with same e-mail alredy exists.')
     }
 
     return reply.status(STATUS_CODE.SUCCESS).send({ result })
