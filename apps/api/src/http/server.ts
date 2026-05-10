@@ -30,14 +30,35 @@ app.setValidatorCompiler(validatorCompiler);
 app.setErrorHandler(errorHandler);
 
 app.register(fastifySwagger, {
-  openapi: {
+    openapi: {
+      openapi: '3.0.0',
+
     info: {
       title: 'SAAS-NEXT-PROJECTS',
-      description: 'Full-stack SassS app woth multi-tenant & RBAC',
+      description: 'Full-stack SaaS app with multi-tenant & RBAC',
       version: '1.0.0',
     },
+
+    components: {
+      securitySchemes: {
+        Authorization: {
+          type: 'apiKey',
+          in: 'header',
+          name: 'Authorization',
+          description: 'JWT obtained from authentication route.',
+        },
+      },
+    },
+
+    security: [
+      {
+        Authorization: [],
+      },
+    ],
+
     servers: [],
   },
+
   transform: jsonSchemaTransform,
 
   // You can also create transform with custom skiplist of endpoints that should not be included in the specification:
