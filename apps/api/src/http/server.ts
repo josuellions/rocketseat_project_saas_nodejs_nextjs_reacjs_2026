@@ -16,6 +16,8 @@ import { authenticateWithGithub } from './routes/auth/authenticate-with-github';
 import { requestPasswordRecover } from './routes/auth/request-password-recover';
 import { requestPasswordReset } from './routes/auth/request-password-reset';
 import { createOrganization } from './routes/orgs/create-organization';
+import { getOrganizations } from './routes/orgs/get-organizations';
+import { getOrganization } from './routes/orgs/get-organization';
 import { getMembership } from './routes/orgs/get-membership';
 import { createAccount } from './routes/auth/create-account';
 import { getUserProfile } from './routes/auth/get-profile';
@@ -61,14 +63,15 @@ app.register(fastifyJwt, {
 
 app.register(fastifyCors);
 app.register(createAccount);
-app.register(getUserProfile);
 app.register(getMembership);
+app.register(getUserProfile);
+app.register(getOrganization);
+app.register(getOrganizations);
 app.register(createOrganization);
 app.register(requestPasswordReset);
 app.register(requestPasswordRecover);
 app.register(authenticateWithGithub);
 app.register(authenticateWithPassword);
-
 
 app.listen({ port }).then(() => {
   console.info(`HTTP server running, port: ${port}`)
