@@ -13,12 +13,15 @@ import {
 import { createAccount } from './routes/auth/create-account';
 import { authenticateWithPassword } from './routes/auth/authenticate-with-password';
 import { getUserProfile } from './routes/auth/get-profile';
+import { errorHandler } from './error-handler';
 
 const port = 3333;
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
 app.setSerializerCompiler(serializerCompiler);
 app.setValidatorCompiler(validatorCompiler);
+
+app.setErrorHandler(errorHandler);
 
 app.register(fastifySwagger, {
   openapi: {

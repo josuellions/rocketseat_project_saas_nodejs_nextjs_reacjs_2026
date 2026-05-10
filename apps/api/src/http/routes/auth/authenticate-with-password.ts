@@ -5,6 +5,8 @@ import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 
 import STATUS_CODE from "../../../../../../types/status";
+import { BadRequestError } from "../_errors/error-bad-request";
+import { UnauthorizedError } from "../_errors/error-unauthorized";
 
 export async function authenticateWithPassword(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
@@ -17,12 +19,6 @@ export async function authenticateWithPassword(app: FastifyInstance) {
           password: z.string()
         }),
         response: {
-          401: z.object({
-            message: z.string()
-          }),
-          400: z.object({
-            message: z.string()
-          }),
           201: z.object({
             token: z.string()
           })
@@ -31,24 +27,23 @@ export async function authenticateWithPassword(app: FastifyInstance) {
     },
     async (req, replay) => {
       const { email, password } = req.body;
-console.log(">>USER AUTH")
-console.log(req.body)
+
       const userFromEmail = await prisma.user.findUnique({
         where: { email }
       })
 
       if(!userFromEmail) {
-        return replay.status(STATUS_CODE.BAD_REQUEST).send({message: 'Invalid credentials.'})
+        throw new BadRequestError('Invalid credentials.')
       }
 
       if(userFromEmail.passwordHash === null) {
-        return replay.status(STATUS_CODE.BAD_REQUEST).send({message: 'User does not have a password, use social login'})
+        throw new UnauthorizedError('User does not have a password, use social login')
       }
 
       const isPasswordValid =  await  compare(password, userFromEmail.passwordHash);
 
       if(!isPasswordValid) {
-        return replay.status(STATUS_CODE.UNAUTHORIZED).send({message: 'User and password invalid credentials.'});
+        throw new BadRequestError('User and password invalid credentials.');
       }
 
       const token = await replay.jwtSign(
