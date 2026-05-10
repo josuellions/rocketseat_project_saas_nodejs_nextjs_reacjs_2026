@@ -10,14 +10,18 @@ import {
   validatorCompiler,
   ZodTypeProvider 
 } from 'fastify-type-provider-zod';
-import { createAccount } from './routes/auth/create-account';
+
 import { authenticateWithPassword } from './routes/auth/authenticate-with-password';
-import { getUserProfile } from './routes/auth/get-profile';
-import { errorHandler } from './error-handler';
+import { authenticateWithGithub } from './routes/auth/authenticate-with-github';
 import { requestPasswordRecover } from './routes/auth/request-password-recover';
 import { requestPasswordReset } from './routes/auth/request-password-reset';
+import { createAccount } from './routes/auth/create-account';
+import { getUserProfile } from './routes/auth/get-profile';
+import { errorHandler } from './error-handler';
 
-const port = 3333;
+import { env } from '@saas_node_next_react/env';
+
+const port = env.SERVER_PORT;
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
 app.setSerializerCompiler(serializerCompiler);
@@ -48,7 +52,7 @@ app.register(fastifySwaggerUI, {
 })
 
 app.register(fastifyJwt, {
-  secret: 'my-jwt-secret'
+  secret: env.JWT_SECRET
 })
 
 app.register(fastifyCors);
@@ -56,7 +60,9 @@ app.register(createAccount);
 app.register(getUserProfile);
 app.register(requestPasswordReset);
 app.register(requestPasswordRecover);
+app.register(authenticateWithGithub);
 app.register(authenticateWithPassword);
+
 
 app.listen({ port }).then(() => {
   console.info(`HTTP server running, port: ${port}`)
