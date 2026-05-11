@@ -15,6 +15,7 @@ import { authenticateWithPassword } from './routes/auth/authenticate-with-passwo
 import { authenticateWithGithub } from './routes/auth/authenticate-with-github';
 import { requestPasswordRecover } from './routes/auth/request-password-recover';
 import { requestPasswordReset } from './routes/auth/request-password-reset';
+import { transferOrganization } from './routes/orgs/transfer-organization';
 import { createOrganization } from './routes/orgs/create-organization';
 import { updateOrganization } from './routes/orgs/update-organization';
 import { deleteOrganization } from './routes/orgs/delete-organization';
@@ -72,6 +73,7 @@ app.register(getOrganizations);
 app.register(createOrganization);
 app.register(updateOrganization);
 app.register(deleteOrganization);
+app.register(transferOrganization);
 app.register(requestPasswordReset);
 app.register(requestPasswordRecover);
 app.register(authenticateWithGithub);
