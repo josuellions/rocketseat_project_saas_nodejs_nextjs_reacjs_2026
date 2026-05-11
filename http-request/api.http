@@ -4,6 +4,7 @@
 @user_name = Josuel,
 @user_email = josuel@email.com
 @user_password = 123teste
+@user_password_reset=new_password_reset"
 
 ### 
 ## LOCAL
@@ -48,7 +49,7 @@ Content-Type: application/json
 
 {
   "code": "{{auth_recover_password.response.body.result.code}}",
-  "password": "new_password_reset"
+  "password": "{{user_password_reset}}"
 }
 
 ### 
