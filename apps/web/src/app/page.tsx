@@ -1,8 +1,11 @@
+import AuthLayout  from "../app/auth/layout";
+import SingInPage from "./auth/sign-in/page";
+
 export default function Home() {
   return (
-    <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
-     <h1>Hello Word</h1>
-     <h2>Gestor de projetos</h2>
-    </div>
+     <AuthLayout>
+      <h1 className="text-center text-lg">Gestor de projetos</h1>
+        <SingInPage/>
+     </AuthLayout>
   )
 }

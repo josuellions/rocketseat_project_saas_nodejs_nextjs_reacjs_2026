@@ -47,3 +47,9 @@ pnpm prisma init
 ```bash
 npx create-next-app@rc --turbo
 ```
+
+  - Create components
+```bash
+pnpm dlx shadcn@latest init 
+pnpm dlx shadcn@latest add alert button input label separator      
+```
