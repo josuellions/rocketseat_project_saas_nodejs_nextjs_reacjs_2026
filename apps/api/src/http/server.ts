@@ -12,6 +12,7 @@ import {
 } from 'fastify-type-provider-zod';
 
 import { authenticateWithPassword } from './routes/auth/authenticate-with-password';
+import { getOrganizationBilling } from './routes/billing/get-organization-billing';
 import { authenticateWithGithub } from './routes/auth/authenticate-with-github';
 import { requestPasswordRecover } from './routes/auth/request-password-recover';
 import { requestPasswordReset } from './routes/auth/request-password-reset';
@@ -111,6 +112,8 @@ app.register(rejectInvite);
 app.register(revokeInvite)
 app.register(getInvites);
 app.register(getInvite);
+
+app.register(getOrganizationBilling)
 
 app.listen({ port }).then(() => {
   console.info(`HTTP server running, port: ${port}`)
