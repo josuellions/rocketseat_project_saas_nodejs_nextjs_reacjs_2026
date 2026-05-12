@@ -1,0 +1,23 @@
+{
+  "name": "@saas_node_next_react/env",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.ts",
+  "types": "index.ts",
+  "devDependencies": {
+    "@saas_node_next_react/eslint-config": "workspace:*",
+    "@saas_node_next_react/prettier": "workspace:*",
+    "@saas_node_next_react/ts-config": "workspace:*",
+    "@types/node": "20.12.5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@saas_node_next_react/eslint-config/library"
+    ]
+  },
+  "prettier": "@saas_node_next_react/prettier",
+  "dependencies": {
+    "@t3-oss/env-nextjs": "0.9.2",
+    "zod": "^4.4.3"
+  }
+}

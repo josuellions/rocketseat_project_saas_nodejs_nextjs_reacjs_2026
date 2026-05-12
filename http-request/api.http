@@ -1,6 +1,11 @@
 # Variables
 @BASE_URL_LOCAL = http://localhost:3333
 
+@user_name = Josuel,
+@user_email = josuel@email.com
+@user_password = 123teste
+@user_password_reset=new_password_reset"
+
 ### 
 ## LOCAL
 # @name users
@@ -8,7 +13,57 @@ POST {{BASE_URL_LOCAL}}/users
 Content-Type: application/json
 
 {
-  "name": "Josuel",
-  "email":"josuel@email.com",
-  "password": "123teste"
+  "name": "{{user_name}}",
+  "email": "{{user_email}}",
+  "password": "{{user_password}}"
 }
+
+### 
+# @name auth
+POST {{BASE_URL_LOCAL}}/sessions/password
+Content-Type: application/json
+
+{
+  "email": "{{user_email}}",
+  "password": "{{user_password}}"
+}
+
+### 
+# @name user_get
+GET {{BASE_URL_LOCAL}}/user/profile
+Authorization: Bearer {{auth.response.body.token}}
+
+### 
+# @name auth_recover_password
+POST {{BASE_URL_LOCAL}}/user/password/recover
+Content-Type: application/json
+
+{
+  "email": "{{user_email}}"
+}
+
+### 
+# @name auth_reset_password
+POST {{BASE_URL_LOCAL}}/user/password/reset
+Content-Type: application/json
+
+{
+  "code": "{{auth_recover_password.response.body.result.code}}",
+  "password": "{{user_password_reset}}"
+}
+
+### 
+# @name auth_github
+//https://github.com/login/oauth/authorize?client_id=SEU_CLIENT_ID&redirect_uri=http://localhost:3000/api/auth/callback&scope=user:email
+@get_github_url_params_code = c4a070124c40e88a2806
+POST {{BASE_URL_LOCAL}}/sessions/github
+Content-Type: application/json
+
+{
+  "code": "{{get_github_url_params_code}}"
+}
+
+### 
+# @name user_get_github
+GET {{BASE_URL_LOCAL}}/user/profile
+Authorization: Bearer {{auth_github.response.body.token}}

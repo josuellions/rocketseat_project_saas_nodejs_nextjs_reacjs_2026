@@ -1,10 +1,23 @@
 {
-    "extends": "@saas_node_next_react/ts-config/node.json",
-    "include": ["src/**/*"],
-    "compilerOptions": {
-      "types": ["node"],
-      "paths": {
-        "@/*": ["./src/*"]
-      }
-    }
+  "extends": "@saas_node_next_react/ts-config/node.json",
+  "include": ["src/**/*", "@types/*.d.ts", "../../types/**/*"],
+  "compilerOptions": {
+    "target": "ES2022",
+
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    "baseUrl": ".",
+
+    "paths": {
+      "@/*": ["src/*"],
+      "@shared/*": ["../../types/*"]
+    },
+
+    "types": ["node"],
+
+    "strict": true,
+
+    "ignoreDeprecations": "6.0"
+  }
 }
