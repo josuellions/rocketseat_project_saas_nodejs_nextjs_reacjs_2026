@@ -53,3 +53,7 @@ npx create-next-app@rc --turbo
 pnpm dlx shadcn@latest init 
 pnpm dlx shadcn@latest add alert button input label separator      
 ```
+
+---
+  - Server Actions
+ 

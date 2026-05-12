@@ -1,15 +1,18 @@
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
+
+import { signInWithEmailAndPassword } from "./actions";
 
 // import githubIcon from "@/assets/github-icon.svg";
 // import Image from "next/image";
 
 export default function SingInPage() {
   return (
-    <form action="" className="space-y-6">
+    <form action={signInWithEmailAndPassword} className="space-y-6">
       <div className="space-y-2">
         <Label htmlFor="email">E-mail</Label>
         <Input name="email" type="email" id="email"/>
