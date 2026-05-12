@@ -33,6 +33,7 @@ import { getProjects } from './routes/projects/get-projects';
 import { getProject } from './routes/projects/get-project';
 import { getUserProfile } from './routes/auth/get-profile';
 import { getMembers } from './routes/members/get-members';
+import { getInvites } from './routes/invites/get-invites';
 import { getInvite } from './routes/invites/get-invite';
 import { errorHandler } from './error-handler';
 
@@ -100,6 +101,7 @@ app.register(removeMember)
 app.register(getMembers);
 
 app.register(createInvite)
+app.register(getInvites)
 app.register(getInvite)
 
 app.listen({ port }).then(() => {
