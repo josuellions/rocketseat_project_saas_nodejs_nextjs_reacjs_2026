@@ -33,6 +33,7 @@ import { getProjects } from './routes/projects/get-projects';
 import { getProject } from './routes/projects/get-project';
 import { getUserProfile } from './routes/auth/get-profile';
 import { getMembers } from './routes/members/get-members';
+import { getInvite } from './routes/invites/get-invite';
 import { errorHandler } from './error-handler';
 
 import { env } from '@saas_node_next_react/env';
@@ -99,6 +100,7 @@ app.register(removeMember)
 app.register(getMembers);
 
 app.register(createInvite)
+app.register(getInvite)
 
 app.listen({ port }).then(() => {
   console.info(`HTTP server running, port: ${port}`)
