@@ -51,21 +51,11 @@ export async function rejectInvite(app: FastifyInstance) {
       throw new BadRequestError(`This invite belongs to another user.`)
     }
 
-    await prisma.$transaction([
-      prisma.member.create({
-        data: {
-          userId,
-          role: invite.role,
-          organizationId: invite.organizationId
-        }
-      }),
-
-      prisma.invite.delete({
-        where: {
-          id: inviteId
-        }
-      })
-    ])
+    await prisma.invite.delete({
+      where: {
+        id: inviteId
+      }
+    })
     
     return replay.status(STATUS_CODE.NO_CONTENT).send(null);
   })
