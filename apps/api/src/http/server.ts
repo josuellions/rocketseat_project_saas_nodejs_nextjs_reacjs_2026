@@ -22,6 +22,7 @@ import { deleteOrganization } from './routes/orgs/delete-organization';
 import { getOrganizations } from './routes/orgs/get-organizations';
 import { getOrganization } from './routes/orgs/get-organization';
 import { createProject } from './routes/projects/create-project';
+import { deleteProject } from './routes/projects/delete-project';
 import { getMembership } from './routes/orgs/get-membership';
 import { createAccount } from './routes/auth/create-account';
 import { getUserProfile } from './routes/auth/get-profile';
@@ -81,6 +82,7 @@ app.register(authenticateWithGithub);
 app.register(authenticateWithPassword);
 
 app.register(createProject)
+app.register(deleteProject)
 
 app.listen({ port }).then(() => {
   console.info(`HTTP server running, port: ${port}`)
