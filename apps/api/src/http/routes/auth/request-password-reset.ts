@@ -19,14 +19,7 @@ export async function requestPasswordReset(app:FastifyInstance) {
         password: z.string().min(6)
       }),
       response: {
-        200: z.object({
-          result: z.object({
-            id: z.string(),
-            email: z.string(),
-            name: z.string().nullable(),
-            passwordHash: z.string().nullable()
-          }).nullable()
-        })
+        204: z.null()
       }
     }
   }, async (req, reply) => {
@@ -45,15 +38,22 @@ export async function requestPasswordReset(app:FastifyInstance) {
     const rounds = 6;
     const passwordHash = await hash(password, rounds);
 
-    const result = await prisma.user.update({
-      data: {
-        passwordHash
-      },
-      where: { 
-        id: token.userId
-      }
-    })
+    await prisma.$transaction([
+      prisma.user.update({
+        data: {
+          passwordHash
+        },
+        where: { 
+          id: token.userId
+        }
+      }),
+      prisma.token.delete({
+        where: {
+          id: code
+        }
+      })
+    ])
 
-    return reply.status(STATUS_CODE.SUCCESS).send({ result })
+    return reply.status(STATUS_CODE.NO_CONTENT).send(null)
   })
 }
