@@ -1,11 +1,13 @@
 import AuthLayout  from "../app/auth/layout";
 import SingInPage from "./auth/sign-in/page";
+import SingUpPage from "./auth/sign-up/page";
 
 export default function Home() {
   return (
      <AuthLayout>
-      <h1 className="text-center text-lg">Gestor de projetos</h1>
-        <SingInPage/>
+      
+        {/* <SingInPage/> */}
+        <SingUpPage/>
      </AuthLayout>
   )
 }
