@@ -40,3 +40,10 @@ npx create-turbo@latest
 ```bash
 pnpm prisma init
 ```
+
+---
+  - Create web
+
+```bash
+npx create-next-app@rc --turbo
+```
