@@ -27,6 +27,7 @@ import { updateProject } from './routes/projects/update-project';
 import { getMembership } from './routes/orgs/get-membership';
 import { createAccount } from './routes/auth/create-account';
 import { updateMember } from './routes/members/update-member';
+import { removeMember } from './routes/members/remove-member';
 import { getProjects } from './routes/projects/get-projects';
 import { getProject } from './routes/projects/get-project';
 import { getUserProfile } from './routes/auth/get-profile';
@@ -93,6 +94,7 @@ app.register(getProjects);
 app.register(getProject);
 
 app.register(updateMember)
+app.register(removeMember)
 app.register(getMembers);
 
 app.listen({ port }).then(() => {
