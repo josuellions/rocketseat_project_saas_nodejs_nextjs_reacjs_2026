@@ -4,7 +4,7 @@
 @user_name = Josuel,
 @user_email = josuel@email.com
 @user_password = 123teste
-@user_password_reset=new_password_reset"
+@user_password_reset=new_password_reset
 
 ### 
 ## LOCAL
