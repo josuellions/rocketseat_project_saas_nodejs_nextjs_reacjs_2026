@@ -29,6 +29,7 @@ import { createAccount } from './routes/auth/create-account';
 import { getProjects } from './routes/projects/get-projects';
 import { getProject } from './routes/projects/get-project';
 import { getUserProfile } from './routes/auth/get-profile';
+import { getMembers } from './routes/members/get-members';
 import { errorHandler } from './error-handler';
 
 import { env } from '@saas_node_next_react/env';
@@ -89,6 +90,8 @@ app.register(deleteProject);
 app.register(updateProject);
 app.register(getProjects);
 app.register(getProject);
+
+app.register(getMembers);
 
 app.listen({ port }).then(() => {
   console.info(`HTTP server running, port: ${port}`)
