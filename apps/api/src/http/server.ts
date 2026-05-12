@@ -24,6 +24,7 @@ import { getOrganization } from './routes/orgs/get-organization';
 import { createProject } from './routes/projects/create-project';
 import { deleteProject } from './routes/projects/delete-project';
 import { updateProject } from './routes/projects/update-project';
+import { createInvite } from './routes/invites/create-invite';
 import { getMembership } from './routes/orgs/get-membership';
 import { createAccount } from './routes/auth/create-account';
 import { updateMember } from './routes/members/update-member';
@@ -96,6 +97,8 @@ app.register(getProject);
 app.register(updateMember)
 app.register(removeMember)
 app.register(getMembers);
+
+app.register(createInvite)
 
 app.listen({ port }).then(() => {
   console.info(`HTTP server running, port: ${port}`)

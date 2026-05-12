@@ -6,7 +6,7 @@
     "dev": "pnpm env:load tsx watch src/http/server.ts",
     "dev:base": "pnpm env:load tsx watch src/index.ts",
     "database:manager:studio": "pnpm env:load prisma studio",
-    "database:migrations:create": "pnpm prisma migrate dev"
+    "database:migrations:create": "pnpm env:load prisma migrate dev"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
