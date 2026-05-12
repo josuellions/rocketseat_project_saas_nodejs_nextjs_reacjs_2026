@@ -29,6 +29,7 @@ import { getMembership } from './routes/orgs/get-membership';
 import { createAccount } from './routes/auth/create-account';
 import { updateMember } from './routes/members/update-member';
 import { removeMember } from './routes/members/remove-member';
+import { acceptInvite } from './routes/invites/accept-invite';
 import { getProjects } from './routes/projects/get-projects';
 import { getProject } from './routes/projects/get-project';
 import { getUserProfile } from './routes/auth/get-profile';
@@ -96,13 +97,14 @@ app.register(updateProject);
 app.register(getProjects);
 app.register(getProject);
 
-app.register(updateMember)
-app.register(removeMember)
+app.register(updateMember);
+app.register(removeMember);
 app.register(getMembers);
 
-app.register(createInvite)
-app.register(getInvites)
-app.register(getInvite)
+app.register(createInvite);
+app.register(acceptInvite);
+app.register(getInvites);
+app.register(getInvite);
 
 app.listen({ port }).then(() => {
   console.info(`HTTP server running, port: ${port}`)
