@@ -25,6 +25,7 @@ import { createProject } from './routes/projects/create-project';
 import { deleteProject } from './routes/projects/delete-project';
 import { getMembership } from './routes/orgs/get-membership';
 import { createAccount } from './routes/auth/create-account';
+import { getProject } from './routes/projects/get-project';
 import { getUserProfile } from './routes/auth/get-profile';
 import { errorHandler } from './error-handler';
 
@@ -83,6 +84,7 @@ app.register(authenticateWithPassword);
 
 app.register(createProject)
 app.register(deleteProject)
+app.register(getProject)
 
 app.listen({ port }).then(() => {
   console.info(`HTTP server running, port: ${port}`)
