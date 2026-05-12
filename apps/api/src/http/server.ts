@@ -31,6 +31,7 @@ import { updateMember } from './routes/members/update-member';
 import { removeMember } from './routes/members/remove-member';
 import { acceptInvite } from './routes/invites/accept-invite';
 import { rejectInvite } from './routes/invites/reject-invite';
+import { revokeInvite } from './routes/invites/revoke-invite';
 import { getProjects } from './routes/projects/get-projects';
 import { getProject } from './routes/projects/get-project';
 import { getUserProfile } from './routes/auth/get-profile';
@@ -105,6 +106,7 @@ app.register(getMembers);
 app.register(createInvite);
 app.register(acceptInvite);
 app.register(rejectInvite);
+app.register(revokeInvite)
 app.register(getInvites);
 app.register(getInvite);
 
