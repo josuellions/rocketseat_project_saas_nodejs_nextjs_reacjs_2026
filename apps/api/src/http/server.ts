@@ -19,6 +19,7 @@ import { transferOrganization } from './routes/orgs/transfer-organization';
 import { createOrganization } from './routes/orgs/create-organization';
 import { updateOrganization } from './routes/orgs/update-organization';
 import { deleteOrganization } from './routes/orgs/delete-organization';
+import { getPendingInvites } from './routes/invites/get-pending-invites';
 import { getOrganizations } from './routes/orgs/get-organizations';
 import { getOrganization } from './routes/orgs/get-organization';
 import { createProject } from './routes/projects/create-project';
@@ -103,6 +104,7 @@ app.register(updateMember);
 app.register(removeMember);
 app.register(getMembers);
 
+app.register(getPendingInvites)
 app.register(createInvite);
 app.register(acceptInvite);
 app.register(rejectInvite);
