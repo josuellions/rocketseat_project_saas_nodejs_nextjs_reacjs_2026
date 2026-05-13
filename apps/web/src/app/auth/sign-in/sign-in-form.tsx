@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link"
-import { Loader2 } from "lucide-react";
+import { Loader2, AsteriskIcon, AlertTriangle  } from "lucide-react";
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,22 +10,51 @@ import { Separator } from "@/components/ui/separator"
 
 import { signInWithEmailAndPassword } from "./actions"
 import { useActionState } from "react"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 // import githubIcon from "@/assets/github-icon.svg";
 // import Image from "next/image";
 
 export function SignInForm() {
-  const [ state, formAction, isPending ] = useActionState(signInWithEmailAndPassword, null)
+  const [ {success, message, errors }, formAction, isPending ] = useActionState(
+    signInWithEmailAndPassword,
+    {success: false, message: null, errors: null}
+  )
   return (
      <form action={formAction} className="space-y-6">
-      <h1>STATE: {state} </h1>
+     
+      {success  === false && message && (
+        <Alert variant={"destructive"}>
+          <AlertTriangle/>
+          <AlertTitle>Sign in failed!</AlertTitle>
+          <AlertDescription>
+            <p>{message}</p>
+          </AlertDescription>
+        </Alert>
+      )}
+
       <div className="space-y-2">
         <Label htmlFor="email">E-mail</Label>
         <Input name="email" type="email" id="email" value={""}/>
+
+        {errors?.email && (
+          <p className="text-xs font-medium text-red-500 dark:text-red-400 flex items-center gap-1">
+            <AsteriskIcon className="size-4"/>
+            {errors.email[0]}
+          </p>
+        )}
       </div>
+
       <div className="space-y-2">
         <Label htmlFor="password">Password</Label>
         <Input name="password" type="password" id="password" value=""/>
+        
+        {errors?.password && (
+          <p className="text-xs font-medium text-red-500 dark:text-red-400 flex items-center gap-1">
+            <AsteriskIcon className="size-4"/>
+            {errors.password[0]}
+          </p>
+        )}
 
         <Link 
           href="/auth/forgot-password"
@@ -44,7 +73,6 @@ export function SignInForm() {
           Create new account
         </Link>
       </Button>
-
 
       <Separator/>
 
