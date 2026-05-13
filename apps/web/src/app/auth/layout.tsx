@@ -1,13 +1,20 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import { redirect } from "next/navigation";
 
 import logo from "@/assets/img/logos/logo_01.png"
+import { isAuthenticated } from "@/auth/auth";
 
-export default function AuthLayout({
+export default async function AuthLayout({
   children
 }:  Readonly<{
     children: React.ReactNode}
   >) {
+
+  if(await isAuthenticated()) {
+    redirect('/')
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center flex-col px-4">
      <div className="w-full max-w-xs flex flex-col gap-4">

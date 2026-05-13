@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { HTTPError } from "ky";
+import { cookies } from "next/headers";
 
 import { singInWithPassword } from "@/http/sing-in-with-password";
 
@@ -26,10 +27,17 @@ export async function signInWithEmailAndPassword( data: FormData) {
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
   try {
-      const { token } = await singInWithPassword({
+    const cookieStore = await cookies();
+    const { token } = await singInWithPassword({
       email,
       password
     })
+
+    cookieStore.set('token-saas-next', token, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+    })
+
   } catch (err) {
     if(err instanceof HTTPError) {
       const { message } = await err.response.json();

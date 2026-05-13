@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link"
+import { useRouter } from "next/navigation";
 import { Loader2, AsteriskIcon, AlertTriangle  } from "lucide-react";
 
 import { Button } from "@/components/ui/button"
@@ -20,7 +21,13 @@ export function SignInForm() {
   //   signInWithEmailAndPassword,
   //   {success: false, message: null, errors: null}
   // )
-  const [{success, message, errors}, handleSubmit, isPending] = useFormState(signInWithEmailAndPassword);
+  const router = useRouter();
+  const [{success, message, errors}, handleSubmit, isPending] = useFormState(
+    signInWithEmailAndPassword,
+    () => {
+      router.push("/")
+    }
+  );
 
   return (
      <form onSubmit={handleSubmit} className="space-y-6">
