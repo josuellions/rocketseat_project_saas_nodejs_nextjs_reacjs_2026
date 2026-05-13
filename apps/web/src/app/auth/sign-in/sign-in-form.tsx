@@ -1,27 +1,54 @@
 'use client'
 
 import Link from "next/link"
+//import { requestFormReset } from "react-dom";
+import { FormEvent, useState, useTransition } from "react"
 import { Loader2, AsteriskIcon, AlertTriangle  } from "lucide-react";
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 import { signInWithEmailAndPassword } from "./actions"
-import { useActionState } from "react"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 // import githubIcon from "@/assets/github-icon.svg";
 // import Image from "next/image";
 
 export function SignInForm() {
-  const [ {success, message, errors }, formAction, isPending ] = useActionState(
-    signInWithEmailAndPassword,
-    {success: false, message: null, errors: null}
-  )
+  // const [ {success, message, errors }, formAction, isPending ] = useActionState(
+  //   signInWithEmailAndPassword,
+  //   {success: false, message: null, errors: null}
+  // )
+  const [isPending, startTransition] = useTransition();
+  const [{success, message, errors }, setFormState] = useState<{
+      success: boolean,
+      message: string| null,
+      errors: Record<string, string[]> | null
+  }>({
+    success: false,
+    message: null,
+    errors: null
+  })
+
+  async function handleSignIn(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    startTransition(async() => {
+      const state = await signInWithEmailAndPassword(data);
+
+      setFormState(state);
+    });
+
+    //requestFormReset(form)
+  }
+
   return (
-     <form action={formAction} className="space-y-6">
+     <form onSubmit={handleSignIn} className="space-y-6">
      
       {success  === false && message && (
         <Alert variant={"destructive"}>
@@ -35,7 +62,7 @@ export function SignInForm() {
 
       <div className="space-y-2">
         <Label htmlFor="email">E-mail</Label>
-        <Input name="email" type="email" id="email" value={""}/>
+        <Input name="email" type="email" id="email"/>
 
         {errors?.email && (
           <p className="text-xs font-medium text-red-500 dark:text-red-400 flex items-center gap-1">
@@ -47,7 +74,7 @@ export function SignInForm() {
 
       <div className="space-y-2">
         <Label htmlFor="password">Password</Label>
-        <Input name="password" type="password" id="password" value=""/>
+        <Input name="password" type="password" id="password" />
         
         {errors?.password && (
           <p className="text-xs font-medium text-red-500 dark:text-red-400 flex items-center gap-1">
