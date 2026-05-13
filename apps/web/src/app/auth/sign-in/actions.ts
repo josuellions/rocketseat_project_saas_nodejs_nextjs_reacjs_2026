@@ -4,7 +4,7 @@ import { z } from "zod";
 import { HTTPError } from "ky";
 import { cookies } from "next/headers";
 
-import { singInWithPassword } from "@/http/sing-in-with-password";
+import { singInWithPassword } from "@/http/sign-in-with-password";
 
 const signInschema = z.object({
   email: z.email({message: 'Please, provide a valid e-mail address.'}),
