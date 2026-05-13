@@ -1,8 +1,6 @@
 'use client'
 
 import Link from "next/link"
-//import { requestFormReset } from "react-dom";
-import { FormEvent, useState, useTransition } from "react"
 import { Loader2, AsteriskIcon, AlertTriangle  } from "lucide-react";
 
 import { Button } from "@/components/ui/button"
@@ -12,6 +10,7 @@ import { Separator } from "@/components/ui/separator"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 import { signInWithEmailAndPassword } from "./actions"
+import { useFormState } from "@/hooks/use-form-state";
 
 // import githubIcon from "@/assets/github-icon.svg";
 // import Image from "next/image";
@@ -21,34 +20,10 @@ export function SignInForm() {
   //   signInWithEmailAndPassword,
   //   {success: false, message: null, errors: null}
   // )
-  const [isPending, startTransition] = useTransition();
-  const [{success, message, errors }, setFormState] = useState<{
-      success: boolean,
-      message: string| null,
-      errors: Record<string, string[]> | null
-  }>({
-    success: false,
-    message: null,
-    errors: null
-  })
-
-  async function handleSignIn(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-    const data = new FormData(form);
-
-    startTransition(async() => {
-      const state = await signInWithEmailAndPassword(data);
-
-      setFormState(state);
-    });
-
-    //requestFormReset(form)
-  }
+  const [{success, message, errors}, handleSubmit, isPending] = useFormState(signInWithEmailAndPassword);
 
   return (
-     <form onSubmit={handleSignIn} className="space-y-6">
+     <form onSubmit={handleSubmit} className="space-y-6">
      
       {success  === false && message && (
         <Alert variant={"destructive"}>
