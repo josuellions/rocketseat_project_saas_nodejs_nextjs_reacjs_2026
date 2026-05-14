@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { cookies } from "next/headers";
 import { ChevronsUpDown, PlusCircle } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 import { getOrganization } from "@/http/get-organizations";
+import { getCurrentOrganization } from "@/auth/auth";
 
 export async function  OrganizationSwitcher() {
   const { organizations } = await getOrganization();
-  const currentOrg = (await cookies()).get('organization')?.value;
+  const currentOrg = await getCurrentOrganization();
 
   const currentOrganization = organizations.find((org) => org.slug === currentOrg);
   
