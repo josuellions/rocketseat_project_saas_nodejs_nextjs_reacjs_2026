@@ -1,10 +1,12 @@
 import Image from "next/image"
-
-import logo from "@/assets/img/logos/logo_01.png"
-import { ProfileButton } from "./profile-button"
-import { OrganizationSwitcher } from "./organization-switcher"
 import { Slash } from "lucide-react"
 
+import { OrganizationSwitcher } from "./organization-switcher"
+import { ThemeSwither } from "./theme/themeSwither"
+import { ProfileButton } from "./profile-button"
+import { Separator } from "./ui/separator"
+
+import logo from "@/assets/img/logos/logo_01.png"
 import { ability } from "@/auth/auth"
 
 export async function Header() {
@@ -23,6 +25,8 @@ export async function Header() {
 
       </div>
       <div className="flex items-center gap-4">
+        <ThemeSwither />
+        <Separator orientation="vertical" className="h-5"/>
         <ProfileButton/>
       </div>
     </div>

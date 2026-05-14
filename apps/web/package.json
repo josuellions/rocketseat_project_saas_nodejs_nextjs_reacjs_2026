@@ -22,6 +22,7 @@
     "ky": "1.7.5",
     "lucide-react": "^1.14.0",
     "next": "15.0.0-rc.1",
+    "next-themes": "^0.4.6",
     "radix-ui": "^1.4.3",
     "react": "19.0.0-rc-cd22717c-20241013",
     "react-dom": "19.0.0-rc-cd22717c-20241013",
@@ -32,10 +33,10 @@
     "zod": "4.4.3"
   },
   "devDependencies": {
+    "@saas_node_next_react/auth": "workspace:*",
     "@saas_node_next_react/eslint-config": "workspace:*",
     "@saas_node_next_react/prettier": "workspace:*",
     "@saas_node_next_react/ts-config": "workspace:*",
-    "@saas_node_next_react/auth": "workspace:*",
     "@tailwindcss/postcss": "^4.3.0",
     "@types/node": "^20",
     "@types/react": "^18",
