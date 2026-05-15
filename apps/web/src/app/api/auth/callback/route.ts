@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 
 import  STATUS_CODE from "../../../../../../../types/status"
 import { singInWithGithub } from "@/http/sign-in-github";
+import { env } from "@saas_node_next_react/env";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -18,7 +19,7 @@ export async function GET(request: NextRequest) {
 
   const { token } = await singInWithGithub({ code });
 
-  (await cookies()).set('token-saas-next', token, {
+  (await cookies()).set(env.NEXT_COOKIE_TOKEN, token, {
     path: '/',
     maxAge: 60 * 60 * 24 * 7, // 7 days
   })

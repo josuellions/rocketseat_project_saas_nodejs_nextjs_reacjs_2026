@@ -5,17 +5,15 @@ export default async function Home() {
   const { user } = await auth();
 
   return (
-    <div className="p-4 w-full flex flex-col gap-4 items-center">
+    <div className="space-y-4">
       <Header/>
-      <main className="w-full flex flex-col gap-4 items-center justify-center space-y-4">
       
-        <h1>HOME</h1>
-        <div>
-          <pre>
-            {JSON.stringify(user, null, 2)}
-          </pre>
-        </div>
-     </main>
+      <main className="mx-auto w-full max-w-[1200px] space-y-4">
+          <h1 className="text-2xl w-full text-center">Home</h1>
+          <div className="w-full flex flex-col items-center">
+            <p className="text-sm text-muted-foreground">Select an organization.</p>
+          </div>
+      </main>
     </div>
   )
 }

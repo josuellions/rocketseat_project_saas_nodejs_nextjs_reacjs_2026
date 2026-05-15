@@ -5,6 +5,7 @@ import { HTTPError } from "ky";
 import { cookies } from "next/headers";
 
 import { singInWithPassword } from "@/http/sign-in-with-password";
+import { env } from "@saas_node_next_react/env";
 
 const signInschema = z.object({
   email: z.email({message: 'Please, provide a valid e-mail address.'}),
@@ -24,7 +25,7 @@ export async function signInWithEmailAndPassword( data: FormData) {
 
   const { email, password } = result.data;
 
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  //await new Promise((resolve) => setTimeout(resolve, 2000));
 
   try {
     const cookieStore = await cookies();
@@ -33,7 +34,7 @@ export async function signInWithEmailAndPassword( data: FormData) {
       password
     })
 
-    cookieStore.set('token-saas-next', token, {
+    cookieStore.set(env.NEXT_COOKIE_TOKEN, token, {
       path: '/',
       maxAge: 60 * 60 * 24 * 7, // 7 days
     })

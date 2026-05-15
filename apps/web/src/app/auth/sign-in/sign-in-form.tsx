@@ -76,12 +76,12 @@ export function SignInForm() {
         </div>
 
         <Button type="submit" className="w-full" disabled={isPending}>
-        {isPending ? <Loader2 className="size-4 animate-spin"/>  :"Sign in with e-mail"}
+        {isPending ? <Loader2 className="size-4 animate-spin"/>  : "Sign in with e-mail"}
         </Button>
 
         <Button variant="link" className="w-full border-none" size="sm" asChild>
           <Link href={"/auth/sign-up"}>
-            Create new account
+           Create new account
           </Link>
         </Button>
 

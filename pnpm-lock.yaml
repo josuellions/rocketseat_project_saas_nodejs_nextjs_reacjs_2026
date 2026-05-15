@@ -108,6 +108,12 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.2.4
         version: 1.2.4(@types/react@18.3.28)(react@19.0.0-rc-cd22717c-20241013)
+      '@saas_node_next_react/auth':
+        specifier: workspace:*
+        version: link:../../packages/auth
+      '@saas_node_next_react/env':
+        specifier: workspace:*
+        version: link:../../packages/env
       add:
         specifier: ^2.0.6
         version: 2.0.6
@@ -135,6 +141,9 @@ importers:
       next:
         specifier: 15.0.0-rc.1
         version: 15.0.0-rc.1(@babel/core@7.29.0)(react-dom@19.0.0-rc-cd22717c-20241013)(react@19.0.0-rc-cd22717c-20241013)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.0.0-rc-cd22717c-20241013)(react@19.0.0-rc-cd22717c-20241013)
       radix-ui:
         specifier: ^1.4.3
         version: 1.4.3(@types/react-dom@18.3.7)(@types/react@18.3.28)(react-dom@19.0.0-rc-cd22717c-20241013)(react@19.0.0-rc-cd22717c-20241013)
@@ -181,6 +190,9 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.3.7(@types/react@18.3.28)
+      dotenv-cli:
+        specifier: 7.4.1
+        version: 7.4.1
       postcss:
         specifier: ^8.5.14
         version: 8.5.14
@@ -6830,6 +6842,16 @@ packages:
     resolution: {integrity: sha512-vYtKKWFPUPiubpfgCPBghIvl6/udfJV2ILJ8QYwkiYtEUzt3BWH/SNmmbm5eCxNJbEE7UFySBvy4AOiAkCnYHQ==}
     dependencies:
       readable-stream: 1.1.14
+    dev: false
+
+  /next-themes@0.4.6(react-dom@19.0.0-rc-cd22717c-20241013)(react@19.0.0-rc-cd22717c-20241013):
+    resolution: {integrity: sha512-pZvgD5L0IEvX5/9GWyHMf3m8BKiVQwsCMHfoFosXtXBMnaS0ZnIJ9ST4b4NqLVKDEm8QBxoNNGNaBv2JNF6XNA==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
+    dependencies:
+      react: 19.0.0-rc-cd22717c-20241013
+      react-dom: 19.0.0-rc-cd22717c-20241013(react@19.0.0-rc-cd22717c-20241013)
     dev: false
 
   /next@15.0.0-rc.1(@babel/core@7.29.0)(react-dom@19.0.0-rc-cd22717c-20241013)(react@19.0.0-rc-cd22717c-20241013):
