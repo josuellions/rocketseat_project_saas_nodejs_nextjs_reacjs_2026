@@ -4,9 +4,12 @@ import { redirect } from "next/navigation";
 import { isAuthenticated } from "@/auth/auth";
 
 export default async function AppLayout({
-  children
+  children,
+  sheet
 }:  Readonly<{
-    children: React.ReactNode}
+    children: React.ReactNode
+    sheet: React.ReactNode
+  }
   >) {
 
   if(!isAuthenticated()) {
@@ -16,6 +19,7 @@ export default async function AppLayout({
    return (
     <div className="py-4 space-y-4">
         {children}
+        {sheet}
     </div>
   )
 }

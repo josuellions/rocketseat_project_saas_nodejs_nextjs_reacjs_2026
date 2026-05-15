@@ -62,3 +62,9 @@ pnpm dlx shadcn@latest add alert button input label separator
 ```bash
 pnpm i ky
 ```
+
+---
+  - Next parallel routes
+
+---
+  - Next interception routes
