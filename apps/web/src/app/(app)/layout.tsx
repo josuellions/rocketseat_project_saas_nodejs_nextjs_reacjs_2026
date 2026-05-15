@@ -13,9 +13,9 @@ export default async function AppLayout({
     redirect('/auth/sign-in')
   }
 
-  return (
-    <>
-       {children}
-    </>
+   return (
+    <div className="py-4 space-y-4">
+        {children}
+    </div>
   )
 }

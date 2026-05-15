@@ -13,7 +13,7 @@ export async function Header() {
   const premissions = await ability();
 
   return (
-    <div className="w-full flex mx-auto max-w-[1200px] items-center justify-between">
+    <div className="mx-auto flex max-w-[1200px] items-center justify-between border-b pb-2">
       <div className="flex items-center gap-3">
         <Image src={logo} alt="logo project manager" className="object-cover object-center w-16 h-16 rounded-full"/>
       

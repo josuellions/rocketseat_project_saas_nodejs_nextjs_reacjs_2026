@@ -1,16 +1,15 @@
 import {Header} from "@/components/header";
-import { auth } from "@/auth/auth"
 
 export default async function Projects() {
-  // const { user } = await auth();
 
   return (
-    <div className="p-4 w-full flex flex-col gap-4 items-center">
+    <div className="space-y-4">
       <Header/>
-      <main className="w-full flex flex-col gap-4 items-center justify-center space-y-4">
       
-        <h1>Slug</h1>
+      <main className="mx-auto w-full max-w-[1200px] space-y-4">
+         <h1 className="text-2xl w-full">Projects</h1>
         <div>
+          <p className="text-sm text-muted-foreground px-4">List projects.</p>
           <pre>
             {/* {JSON.stringify(user, null, 2)} */}
           </pre>
