@@ -108,6 +108,12 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.2.4
         version: 1.2.4(@types/react@18.3.28)(react@19.0.0-rc-cd22717c-20241013)
+      '@saas_node_next_react/auth':
+        specifier: workspace:*
+        version: link:../../packages/auth
+      '@saas_node_next_react/env':
+        specifier: workspace:*
+        version: link:../../packages/env
       add:
         specifier: ^2.0.6
         version: 2.0.6
@@ -163,9 +169,6 @@ importers:
         specifier: 4.4.3
         version: 4.4.3
     devDependencies:
-      '@saas_node_next_react/auth':
-        specifier: workspace:*
-        version: link:../../packages/auth
       '@saas_node_next_react/eslint-config':
         specifier: workspace:*
         version: link:../../config/eslint-config
@@ -187,6 +190,9 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.3.7(@types/react@18.3.28)
+      dotenv-cli:
+        specifier: 7.4.1
+        version: 7.4.1
       postcss:
         specifier: ^8.5.14
         version: 8.5.14

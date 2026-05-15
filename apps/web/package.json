@@ -1,14 +1,17 @@
 {
-  "name": "web",
+  "name": "@saas_node_next_react/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "env:load": "dotenv -e ../../.env --",
+    "dev": "pnpm env:load next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@saas_node_next_react/auth": "workspace:*",
+    "@saas_node_next_react/env": "workspace:*",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-separator": "^1.1.8",
@@ -33,7 +36,6 @@
     "zod": "4.4.3"
   },
   "devDependencies": {
-    "@saas_node_next_react/auth": "workspace:*",
     "@saas_node_next_react/eslint-config": "workspace:*",
     "@saas_node_next_react/prettier": "workspace:*",
     "@saas_node_next_react/ts-config": "workspace:*",
@@ -41,6 +43,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "dotenv-cli": "7.4.1",
     "postcss": "^8.5.14",
     "tailwindcss": "^4.3.0",
     "typescript": "^5"
