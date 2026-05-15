@@ -15,7 +15,7 @@ export async function Header() {
   return (
     <div className="w-full flex mx-auto max-w-[1200px] items-center justify-between">
       <div className="flex items-center gap-3">
-        <Image src={logo} alt="logo project manager" className="object-cover object-center w-16 h-16 rounded-full" priority/>
+        <Image src={logo} alt="logo project manager" className="object-cover object-center w-16 h-16 rounded-full"/>
       
         <Slash className="size-4 -rotate-[24deg] text-border"/>
 

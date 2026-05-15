@@ -1,7 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { env } from "@saas_node_next_react/env";
 
 export function middleware(req: NextRequest) {
-  console.log('>>ROUTE middleware')
+
   const { pathname } = req.nextUrl;
 
   const response = NextResponse.next();
@@ -9,10 +10,10 @@ export function middleware(req: NextRequest) {
   if(pathname.startsWith('/organization')) {
     const [,, slug] = pathname.split('/');
 
-    response.cookies.set('organization', slug);
+    response.cookies.set(env.NEXT_COOKIE_ORGANIZATION, slug);
 
   } else { 
-    response.cookies.delete('organization');
+    response.cookies.delete(env.NEXT_COOKIE_ORGANIZATION);
   }
 
   return response;

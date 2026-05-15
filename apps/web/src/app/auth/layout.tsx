@@ -18,8 +18,8 @@ export default async function AuthLayout({
   return (
     <div className="min-h-screen flex items-center justify-center flex-col px-4">
      <div className="w-full max-w-xs flex flex-col gap-4">
-      <div className="flex flex-col justify-center rounded-lg">
-        <Image src={logo} alt="logo project manager" className="full rounded-2xl" priority/>
+      <div className="flex flex-col justify-center items-center rounded-lg">
+        <Image src={logo} alt="logo project manager" className="object-cover object-center w-50 h-40 rounded-full" priority/>
       </div>
        {children}
      </div>

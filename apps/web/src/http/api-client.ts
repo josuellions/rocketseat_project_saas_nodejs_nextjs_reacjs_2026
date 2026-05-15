@@ -1,9 +1,11 @@
 import ky from 'ky';
 import { getCookie } from 'cookies-next';
 
-export const api = ky.create({
-  prefixUrl: "http://localhost:3333",
+import { env } from "@saas_node_next_react/env"
 
+export const api = ky.create({
+  prefixUrl: env.NEXT_PUBLIC_API_URL,
+  timeout: 30000,
   hooks: {
     beforeRequest: [
       async (request) => {
@@ -14,13 +16,13 @@ export const api = ky.create({
           const { cookies } = await import("next/headers");
 
           token = (await cookies())
-            .get("token-saas-next")
+            .get(env.NEXT_COOKIE_TOKEN)
             ?.value;
         }
 
         // CLIENT
         else {
-          token = await getCookie("token-saas-next");
+          token = await getCookie(env.NEXT_COOKIE_TOKEN);
         }
 
         if (token) {
