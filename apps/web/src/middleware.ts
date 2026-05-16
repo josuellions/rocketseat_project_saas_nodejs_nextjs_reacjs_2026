@@ -10,10 +10,10 @@ export function middleware(req: NextRequest) {
   if(pathname.startsWith('/organization')) {
     const [,, slug] = pathname.split('/');
 
-    response.cookies.set(env.NEXT_COOKIE_ORGANIZATION, slug);
+    response.cookies.set(env.NEXT_PUBLIC_COOKIE_ORGANIZATION, slug);
 
   } else { 
-    response.cookies.delete(env.NEXT_COOKIE_ORGANIZATION);
+    response.cookies.delete(env.NEXT_PUBLIC_COOKIE_ORGANIZATION);
   }
 
   return response;

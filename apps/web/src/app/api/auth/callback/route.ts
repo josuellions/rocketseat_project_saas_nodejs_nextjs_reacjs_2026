@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
 
   const { token } = await singInWithGithub({ code });
 
-  (await cookies()).set(env.NEXT_COOKIE_TOKEN, token, {
+  (await cookies()).set(env.NEXT_PUBLIC_COOKIE_TOKEN, token, {
     path: '/',
     maxAge: 60 * 60 * 24 * 7, // 7 days
   })

@@ -10,12 +10,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@saas_node_next_react/auth": "workspace:*",
-    "@saas_node_next_react/env": "workspace:*",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
+    "@saas_node_next_react/auth": "workspace:*",
+    "@saas_node_next_react/env": "workspace:*",
+    "@tanstack/react-query": "^5.100.10",
     "add": "^2.0.6",
     "avatar": "^0.1.0",
     "class-variance-authority": "^0.7.1",

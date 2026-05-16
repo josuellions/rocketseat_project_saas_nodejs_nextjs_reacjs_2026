@@ -34,7 +34,7 @@ export async function signInWithEmailAndPassword( data: FormData) {
       password
     })
 
-    cookieStore.set(env.NEXT_COOKIE_TOKEN, token, {
+    cookieStore.set(env.NEXT_PUBLIC_COOKIE_TOKEN, token, {
       path: '/',
       maxAge: 60 * 60 * 24 * 7, // 7 days
     })

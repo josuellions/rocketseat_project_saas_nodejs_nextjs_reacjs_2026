@@ -9,11 +9,11 @@ import { env } from "@saas_node_next_react/env";
 export async function isAuthenticated() {
   const cookieStore = await cookies();
 
-  return !!cookieStore.get(env.NEXT_COOKIE_TOKEN)?.value
+  return !!cookieStore.get(env.NEXT_PUBLIC_COOKIE_TOKEN)?.value
 }
 
 export async function getCurrentOrganization() {
-  const currentOrg = (await cookies()).get(env.NEXT_COOKIE_ORGANIZATION)?.value ?? null;
+  const currentOrg = (await cookies()).get(env.NEXT_PUBLIC_COOKIE_ORGANIZATION)?.value ?? null;
 
   return currentOrg
 }
@@ -46,7 +46,7 @@ export async function ability() {
 }
 
 export async function auth() {
-  const token = (await cookies()).get(env.NEXT_COOKIE_TOKEN)?.value;
+  const token = (await cookies()).get(env.NEXT_PUBLIC_COOKIE_TOKEN)?.value;
 
   if(!token) {
     redirect('/auth/sign-in');

@@ -16,13 +16,13 @@ export const api = ky.create({
           const { cookies } = await import("next/headers");
 
           token = (await cookies())
-            .get(env.NEXT_COOKIE_TOKEN)
+            .get(env.NEXT_PUBLIC_COOKIE_TOKEN)
             ?.value;
         }
 
         // CLIENT
         else {
-          token = await getCookie(env.NEXT_COOKIE_TOKEN);
+          token = await getCookie(env.NEXT_PUBLIC_COOKIE_TOKEN);
         }
 
         if (token) {

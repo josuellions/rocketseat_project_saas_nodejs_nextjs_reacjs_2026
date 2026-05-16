@@ -1,17 +1,17 @@
 import { InterceptedSheetContent } from "@/components/intercepted-sheet-content";
 import { Sheet, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 
-import { OrganizationForm } from "@/app/(app)/create-organization/organization-form";
+import { ProjectForm } from "@/app/(app)/organization/[slug]/create-project/project-form";
 
-export default function CreateOrganization() {
+export default function CreateProject() {
   return (
     <Sheet defaultOpen>
       <InterceptedSheetContent>
         <SheetHeader>
-          <SheetTitle>Create organizattion</SheetTitle>
+          <SheetTitle>Create project</SheetTitle>
         </SheetHeader>
         <div className="px-4 py-4">
-          <OrganizationForm/>
+          <ProjectForm/>
         </div>
       </InterceptedSheetContent>
     </Sheet>

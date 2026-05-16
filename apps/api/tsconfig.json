@@ -1,6 +1,6 @@
 {
   "extends": "@saas_node_next_react/ts-config/node.json",
-  "include": ["src/**/*", "@types/*.d.ts", "../../types/**/*"],
+  "include": ["src/**/*", "@types/*.d.ts", "../../types/**/*", "../web/src/lib/react-query.ts"],
   "compilerOptions": {
     "target": "ES2022",
 

@@ -2,6 +2,7 @@ import Image from "next/image"
 import { Slash } from "lucide-react"
 
 import { OrganizationSwitcher } from "./organization-switcher"
+import { ProjectSwitcher } from "./project-switcher"
 import { ThemeSwither } from "./theme/themeSwither"
 import { ProfileButton } from "./profile-button"
 import { Separator } from "./ui/separator"
@@ -21,7 +22,12 @@ export async function Header() {
 
         <OrganizationSwitcher/>
 
-        {premissions?.can('get', 'Project') && <p>Projects</p>}
+        {premissions?.can('get', 'Project') && (
+          <>
+            <Slash className="size-4 -rotate-[24deg] text-border"/>
+            <ProjectSwitcher/>
+          </>
+        )}
 
       </div>
       <div className="flex items-center gap-4">

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from 'next-themes';
 
+import { Providers } from "./providers";
 import "./globals.css";
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,14 +21,9 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark" 
-          enableSystem
-          disableTransitionOnChange
-        >
+        <Providers>
           {children}
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

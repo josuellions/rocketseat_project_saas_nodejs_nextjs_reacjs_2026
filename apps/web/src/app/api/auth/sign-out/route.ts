@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
 
   redirectUrl.pathname = '/auth/sign-in';
 
-  (await cookies()).delete(env.NEXT_COOKIE_TOKEN)
+  (await cookies()).delete(env.NEXT_PUBLIC_COOKIE_TOKEN)
 
   return NextResponse.redirect(redirectUrl);
 }
