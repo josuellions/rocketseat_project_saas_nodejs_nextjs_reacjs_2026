@@ -20,23 +20,25 @@ export async function getProjects(app: FastifyInstance) {
       }),
       response: {
         200: z.object({
-          result: z.array(
-            z.object({
-              id: z.uuid(),
-              name: z.string(),
-              description: z.string(),
-              slug: z.string(),
-              ownerId: z.uuid(),
-              avatarUrl: z.url().nullable(),
-              createdAt: z.date(),
-              organizationId: z.uuid(),
-              owner: z.object({
+          result: z.object({
+            projects: z.array( 
+              z.object({
                 id: z.uuid(),
-                name: z.string().nullable(),
-                avatarUrl: z.url().nullable()
+                name: z.string(),
+                description: z.string(),
+                slug: z.string(),
+                ownerId: z.uuid(),
+                avatarUrl: z.url().nullable(),
+                createdAt: z.date(),
+                organizationId: z.uuid(),
+                owner: z.object({
+                  id: z.uuid(),
+                  name: z.string().nullable(),
+                  avatarUrl: z.url().nullable()
+                })
               })
-            })
-          )
+            )
+          }).nullable()
         })
       }
     }
@@ -77,6 +79,10 @@ export async function getProjects(app: FastifyInstance) {
       }
     })
 
-    return replay.status(STATUS_CODE.SUCCESS).send({ result: projects })
+    const result = {
+      projects: projects
+    }
+
+    return replay.status(STATUS_CODE.SUCCESS).send({ result })
   })
 }

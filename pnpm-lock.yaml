@@ -114,6 +114,9 @@ importers:
       '@saas_node_next_react/env':
         specifier: workspace:*
         version: link:../../packages/env
+      '@tanstack/react-query':
+        specifier: ^5.100.10
+        version: 5.100.10(react@19.0.0-rc-cd22717c-20241013)
       add:
         specifier: ^2.0.6
         version: 2.0.6
@@ -3169,6 +3172,19 @@ packages:
       postcss: 8.5.14
       tailwindcss: 4.3.0
     dev: true
+
+  /@tanstack/query-core@5.100.10:
+    resolution: {integrity: sha512-8UR0yJR+GiQ40m3lPhUr0xbfAupe6GSQiksSBSa9SM2NjezFyxXCIA69/lz8cSoNKZLrw1/PktIyQBJcVeMi3w==}
+    dev: false
+
+  /@tanstack/react-query@5.100.10(react@19.0.0-rc-cd22717c-20241013):
+    resolution: {integrity: sha512-FLaZf2RCrA/Zgp4aiu5tG3TyasTRO7aZ99skxQpr3Hg/zXOhu6yq5FZCYQ/tRaJtM9ylnoK8tFK7PolXQadv6Q==}
+    peerDependencies:
+      react: ^18 || ^19
+    dependencies:
+      '@tanstack/query-core': 5.100.10
+      react: 19.0.0-rc-cd22717c-20241013
+    dev: false
 
   /@ts-morph/common@0.27.0:
     resolution: {integrity: sha512-Wf29UqxWDpc+i61k3oIOzcUfQt79PIT9y/MWfAGlrkjg6lBC1hwDECLXPVJAhWjiGbfBCxZd65F/LIZF3+jeJQ==}
