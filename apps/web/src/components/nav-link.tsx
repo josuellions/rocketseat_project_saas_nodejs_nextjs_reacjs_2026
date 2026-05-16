@@ -10,10 +10,6 @@ export function NavLink(props: NaviLinkProps) {
   const pathname = usePathname();
 
   const isCurrent = props.href.toString() === pathname;
-console.log({
-  href: props.href.toString(),
-  pathname,
-  isCurrent
-})
+
   return <Link data-current={isCurrent} {...props}/>
 }
