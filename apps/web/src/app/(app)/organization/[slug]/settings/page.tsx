@@ -1,14 +1,19 @@
-import { ability } from "@/auth/auth";
+import { ability, getCurrentOrganization } from "@/auth/auth";
 import { Card, CardHeader, CardDescription, CardTitle, CardContent } from "@/components/ui/card";
 import { OrganizationForm } from "../../organization-form";
 import { DeleteOrganizationButton } from "./delete-organization-button";
+import { getOrganization } from "@/http/get-organization";
 
 export default async function Settings() {
- const permissions = await ability();
+  const permissions = await ability();
+  const currentOrganization = await getCurrentOrganization();
+
+  const { organization } = await getOrganization({organization: currentOrganization!})
 
   const canUpdateOrganization = permissions?.can('update', 'Organization');
   const deleteOrganization = permissions?.can('delete', 'Organization');
   const canGetBilling = permissions?.can('get', 'Billing');
+
   return (
     <div className="space-y-4">
       <div className="space-y-4">
@@ -23,7 +28,11 @@ export default async function Settings() {
             </CardDescription>
             </CardHeader>
             <CardContent>
-              <OrganizationForm/>
+              <OrganizationForm isUpdate initialData={{
+                name: organization?.name,
+                domain: organization?.domain,
+                shouldAttachUsersByDomain: organization?.shouldAttachUsersByDomain
+              }}/>
             </CardContent>
           </Card>
         )}

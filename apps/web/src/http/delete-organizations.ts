@@ -1,4 +1,3 @@
-import { never } from "zod";
 import { api } from "./api-client"
 
 interface deleteOrganizationRequest {
