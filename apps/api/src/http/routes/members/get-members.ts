@@ -21,16 +21,18 @@ export async function getMembers(app: FastifyInstance) {
       }),
       response: {
         200: z.object({
-          result: z.array(
-            z.object({
-              id: z.string(),
-              userId: z.string(),
-              role: roleSchema,
-              name: z.string().nullable(),
-              avatarUrl: z.url().nullable(),
-              email: z.email()
-            })
-          )
+          result: z.object({
+            members: z.array(
+              z.object({
+                id: z.string(),
+                userId: z.string(),
+                role: roleSchema,
+                name: z.string().nullable(),
+                avatarUrl: z.url().nullable(),
+                email: z.email()
+              })
+            )
+          })
         })
       }
     }
@@ -74,6 +76,6 @@ export async function getMembers(app: FastifyInstance) {
       }
     })
 
-    return replay.status(STATUS_CODE.SUCCESS).send({ result: memberWithRoles })
+    return replay.status(STATUS_CODE.SUCCESS).send({ result: { members: memberWithRoles } })
   })
 }
