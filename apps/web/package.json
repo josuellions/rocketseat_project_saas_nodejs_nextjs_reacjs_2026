@@ -22,6 +22,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cookies-next": "^6.1.1",
+    "dayjs": "^1.11.20",
     "dropdown-menu": "^0.1.1",
     "ky": "1.7.5",
     "lucide-react": "^1.14.0",
