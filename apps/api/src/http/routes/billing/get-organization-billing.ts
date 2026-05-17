@@ -9,7 +9,7 @@ import { UnauthorizedError } from "../_errors/error-unauthorized";
 import { prisma } from "@/lib/prisma";
 
 export async function getOrganizationBilling(app: FastifyInstance) {
-  app.withTypeProvider<ZodTypeProvider>().register(auth).get('/organizations/:slug/billing', {
+  app.withTypeProvider<ZodTypeProvider>().register(auth).get('/organization/:slug/billing', {
     schema: {
       tags: ['billing'],
       summary: 'Get billing information from organization',
@@ -71,12 +71,12 @@ export async function getOrganizationBilling(app: FastifyInstance) {
     const result = {
       billing: {
         seats: {
-          unit: amountOfMembers,
+          unit: priceUnitMember,
           amount: amountOfMembers,
           price: amountOfMembers *  priceUnitMember
         },
         projects: {
-          unit: amountOfProjects,
+          unit: priceUnitProject,
           amount: amountOfProjects,
           price: amountOfProjects *  priceUnitProject
         },

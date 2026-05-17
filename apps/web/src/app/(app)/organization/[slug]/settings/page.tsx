@@ -3,6 +3,7 @@ import { Card, CardHeader, CardDescription, CardTitle, CardContent } from "@/com
 import { OrganizationForm } from "../../organization-form";
 import { DeleteOrganizationButton } from "./delete-organization-button";
 import { getOrganization } from "@/http/get-organization";
+import { Billing } from "./billing";
 
 export default async function Settings() {
   const permissions = await ability();
@@ -38,9 +39,7 @@ export default async function Settings() {
         )}
 
         {canGetBilling && (
-          <div>
-            <h2 className="w-full text-2xl font-bold">Billing</h2>
-          </div>
+            <Billing />
         )}
 
         {deleteOrganization && (
