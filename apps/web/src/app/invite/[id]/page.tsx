@@ -6,10 +6,12 @@ import { getInvite } from "@/http/get-invite"
 import { Separator } from "@/components/ui/separator"
 import { auth, isAuthenticated } from '@/auth/auth';
 import { Button } from '@/components/ui/button';
-import { CheckCircleIcon, LogInIcon } from 'lucide-react';
+
+import { CheckCircleIcon, LogInIcon, LogOutIcon } from 'lucide-react';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { acceptInvite } from '@/http/accept-invite';
+import Link from 'next/link';
 
 interface InviteProps {
   params: {
@@ -57,38 +59,70 @@ export default async function InvitePage({params}: InviteProps) {
       <div className="min-h-screen flex items-center justify-center flex-col px-4">
         <div className="w-full max-w-sm flex flex-col justify-center gap-4 space-y-4">
           <div className="flex flex-col items-center space-y-4 rounded-lg">
-          <h1>Invite new member</h1>
-          <Avatar className="size-6">
-            {invite?.author?.avatarUrl && (
-              <AvatarImage src={invite.author.avatarUrl}/>
+
+            <h1>Invite new member</h1>
+            <Avatar className="size-6">
+              {invite?.author?.avatarUrl && (
+                <AvatarImage src={invite.author.avatarUrl}/>
+              )}
+              <AvatarFallback/>
+            </Avatar>
+
+            <p className='text-center leading-relaxed text-muted-foreground text-balance'> 
+              <span className='font-medium text-foreground'>{invite?.author?.name ?? "Someone"}</span> invited you to join <span className='font-medium text-foreground'>{invite?.organization?.name}</span>.{' '}
+              <span className='text-xs'>{dayjs(invite?.createdAt).fromNow()}</span>
+            </p>
+            
+            <Separator/>
+
+            {!isUserAuthenticated && (
+              <form action={signInFormInvite}>
+                <Button type='submit' variant="secondary" className='w-full'>
+                  <LogInIcon className='size-4 mr-2'/>
+                  Sign in to accept the invite
+                </Button>
+              </form>
             )}
-            <AvatarFallback/>
-          </Avatar>
+            
+            {userIsAuthenticatedWithSameEmailFromInvite && (
+              <form action={acceptInviteAction}>
+                <Button type='submit' variant="secondary" className='w-full'>
+                  <CheckCircleIcon className='size-4 mr-2'/>
+                  Join {invite?.organization.name}
+                </Button>
+              </form>
+            )}
 
-          <p className='text-center leading-relaxed text-muted-foreground text-balance'> 
-            <span className='font-medium text-foreground'>{invite?.author?.name ?? "Someone"}</span> invited you to join <span className='font-medium text-foreground'>{invite?.organization?.name}</span>.{' '}
-            <span className='text-xs'>{dayjs(invite?.createdAt).fromNow()}</span>
-          </p>
-          
-          <Separator/>
+            {isUserAuthenticated && !userIsAuthenticatedWithSameEmailFromInvite && (
+              <div className='space-y-4'>
+                <p className='text-balance text-center text-sm leading-relaxed text-muted-foreground'>
+                  This invite was send to {' '} 
+                  <span className='text-foreground font-medium'>
+                    {invite?.email}
+                  </span>
+                  {' '}<br />but you are currently authenticated as {' '}<br />
+                  <span className='text-foreground font-medium'>
+                    {currentUserEmail} 
+                  </span>
+                  .
+                </p>
 
-          {!isUserAuthenticated && (
-            <form action={signInFormInvite}>
-              <Button type='submit' variant="secondary" className='w-full'>
-                <LogInIcon className='size-4 mr-2'/>
-                Sign in to accept the invite
-              </Button>
-            </form>
-          )}
-          
-          {userIsAuthenticatedWithSameEmailFromInvite && (
-            <form action={acceptInviteAction}>
-              <Button type='submit' variant="secondary" className='w-full'>
-                <CheckCircleIcon className='size-4 mr-2'/>
-                Join {invite?.organization.name}
-              </Button>
-            </form>
-          )}
+                <div className='space-y-2'>
+                  <Button asChild className='w-full' variant='secondary'>
+                    <a href='/api/auth/sign-out'>
+                      <LogOutIcon className='size-4 mr-2'/>
+                      Sign out from {currentUserEmail}
+                    </a>
+                  </Button>
+                   <Button asChild className='w-full' variant='outline'>
+                    <Link href='/'>
+                      Back to dashboard
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            )}
+
           </div>
         </div>
       </div>
