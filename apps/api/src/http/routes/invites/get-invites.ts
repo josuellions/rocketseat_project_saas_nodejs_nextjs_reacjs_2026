@@ -22,21 +22,24 @@ export async function getInvites(app: FastifyInstance) {
       }),
       response: {
         200: z.object({
-          result: z.array(
-            z.object({
-              id: z.uuid(),
-              role: roleSchema,
-              email: z.email(),
-              createdAt: z.date(),
-              author: z.object({
-                id: z.uuid(),
-                name: z.string().nullable(),
-              }).nullable(),
+          result: z.object({
+            invites: 
+              z.array(
+                z.object({
+                  id: z.uuid(),
+                  role: roleSchema,
+                  email: z.email(),
+                  createdAt: z.date(),
+                  author: z.object({
+                    id: z.uuid(),
+                    name: z.string().nullable(),
+                  }).nullable(),
+                })
+              )
             })
-          )
-        })
+          })
+        }
       }
-    }
   }, async (req, replay) => {
     const { slug } =  req.params;
     const userId =  await req.getCurrentUserId();
@@ -48,7 +51,7 @@ export async function getInvites(app: FastifyInstance) {
       throw new UnauthorizedError(`You're not allowed to get organization invites.`)
     }
 
-    const invite = await prisma.invite.findMany({
+    const invites = await prisma.invite.findMany({
       where: {
         organizationId: organization.id
       },
@@ -69,6 +72,6 @@ export async function getInvites(app: FastifyInstance) {
       }
     });
 
-    return replay.status(STATUS_CODE.SUCCESS).send({ result: invite  })
+    return replay.status(STATUS_CODE.SUCCESS).send({ result: { invites }  })
   })
 }

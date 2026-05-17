@@ -21,7 +21,6 @@ export async function createInvite(app: FastifyInstance) {
         slug: z.string()
       }),
       body: z.object({
-        name: z.string(),
         email: z.email(),
         role: roleSchema
       }),
@@ -35,7 +34,7 @@ export async function createInvite(app: FastifyInstance) {
     }
   }, async (req, replay) => {
     const { slug } =  req.params;
-    const { name, email, role } = req.body;
+    const { email, role } = req.body;
     const userId =  await req.getCurrentUserId();
     const { organization, membership } =  await req.getUserMembership(slug);
 
@@ -45,7 +44,7 @@ export async function createInvite(app: FastifyInstance) {
       throw new UnauthorizedError(`You're not allowed to create new invites.`)
     }
 
-    const [, domain ] = email
+    const [, domain ] = email.split('@')
 
     if(organization.shouldAttachUsersByDomain && organization.domain === domain) {
       throw new BadRequestError(
@@ -89,7 +88,6 @@ export async function createInvite(app: FastifyInstance) {
         authorId: userId,
         email,
         role,
-        name,
         }
     })
 
