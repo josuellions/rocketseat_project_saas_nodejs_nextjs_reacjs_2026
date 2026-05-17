@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 
 import  STATUS_CODE from "../../../../../../../types/status"
 import { singInWithGithub } from "@/http/sign-in-github";
+import { acceptInvite } from "@/http/accept-invite";
 import { env } from "@saas_node_next_react/env";
 
 export async function GET(request: NextRequest) {
@@ -23,6 +24,17 @@ export async function GET(request: NextRequest) {
     path: '/',
     maxAge: 60 * 60 * 24 * 7, // 7 days
   })
+
+  const inviteId = (await cookies()).get('inviteId')?.value;
+
+  if(inviteId) {
+    try {
+      await acceptInvite({ inviteId });
+      (await cookies()).delete('inviteId')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const redirectUrl = request.nextUrl.clone();
 
