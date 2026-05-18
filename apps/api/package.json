@@ -9,7 +9,7 @@
     "database:migrations:create": "pnpm env:load prisma migrate dev"
   },
   "prisma": {
-    "seed": "tsx prisma/seed.ts"
+    "seed": "pnpm env:load tsx prisma/seed.ts"
   },
   "dependencies": {
     "@fastify/cors": "^11.2.0",
