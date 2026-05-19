@@ -8,12 +8,11 @@ import STATUS_CODE from "@shared/status";
 import { prisma } from "@/lib/prisma";
 import { getUserPermissions } from "@/utils/get-user-premissions";
 import { UnauthorizedError } from "../_errors/error-unauthorized";
-import { roleSchema } from "@saas_node_next_react/auth";
 import { BadRequestError } from "../_errors/error-bad-request";
 
 export async function revokeInvite(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().register(auth)
-  .post('/organizations/:slug/invites/:inviteId', {
+  .delete('/organization/:slug/invite/:inviteId', {
     schema: {
       tags: ['invites'],
       summary: 'Revoke an invite',

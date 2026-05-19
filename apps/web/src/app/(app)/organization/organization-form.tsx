@@ -8,12 +8,16 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { useFormState } from "@/hooks/use-form-state";
-import { createOrganizationAction } from "./actions";
+import { createOrganizationAction, updateOrganizationAction, type OrganizationSchema } from "./actions";
 
-export function OrganizationForm() {
-  const [{success, message, errors}, handleSubmit, isPending] = useFormState(
-    createOrganizationAction
-  );
+interface OrganizationFormProps {
+  isUpdate?: boolean,
+  initialData?: OrganizationSchema
+}
+
+export function OrganizationForm({isUpdate, initialData}: OrganizationFormProps) {
+  const formAction = isUpdate ? updateOrganizationAction : createOrganizationAction;
+  const [{success, message, errors}, handleSubmit, isPending] = useFormState(formAction);
 
   return (
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -39,7 +43,7 @@ export function OrganizationForm() {
         )}
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
-          <Input name="name" type="text" id="name" placeholder="organization name"/>
+          <Input name="name" type="text" id="name" defaultValue={initialData?.name} placeholder="organization name"/>
           
           {errors?.name && (
             <p className="text-xs font-medium text-red-500 dark:text-red-400 flex items-center gap-1">
@@ -50,7 +54,7 @@ export function OrganizationForm() {
         </div>
         <div className="space-y-2">
           <Label htmlFor="domain">Domain</Label>
-          <Input name="domain" type="text" id="domain" inputMode="url" placeholder="example.com"/>
+          <Input name="domain" type="text" id="domain" inputMode="url" defaultValue={initialData?.domain ?? undefined} placeholder="example.com"/>
 
           {errors?.domain && (
             <p className="text-xs font-medium text-red-500 dark:text-red-400 flex items-center gap-1">
@@ -63,6 +67,7 @@ export function OrganizationForm() {
           <div className="space-y-2">
             <div className="flex items-baseline space-x-2">
               <Checkbox
+                defaultChecked={initialData?.shouldAttachUsersByDomain}
                 name="shouldAttachUsersByDomain"
                 id="shouldAttachUsersByDomain"
                 className="translate-y-0.5"
