@@ -18,22 +18,24 @@ export async function getPendingInvites(app: FastifyInstance) {
       security: [{ bearerAuth: [] }],
       response: {
         200: z.object({
-          result: z.array(
-            z.object({
-              id: z.uuid(),
-              role: roleSchema,
-              email: z.email(),
-              createdAt: z.date(),
-              author: z.object({
-                name: z.string().nullable(),
+          result: z.object({ 
+            invites: z.array(
+              z.object({
                 id: z.uuid(),
-                avatarUrl: z.url().nullable(),
-              }).nullable(),
-              organization: z.object({
-                  name: z.string(),
-              }),
-            }).nullable()
-          )
+                role: roleSchema,
+                email: z.email(),
+                createdAt: z.date(),
+                author: z.object({
+                  name: z.string().nullable(),
+                  id: z.uuid(),
+                  avatarUrl: z.url().nullable(),
+                }).nullable(),
+                organization: z.object({
+                    name: z.string(),
+                }),
+              }).nullable()
+            )
+          })
         })
       }
     }
@@ -74,6 +76,6 @@ export async function getPendingInvites(app: FastifyInstance) {
       }
     })
 
-   return replay.status(STATUS_CODE.SUCCESS).send({ result: invites })
+   return replay.status(STATUS_CODE.SUCCESS).send({ result: { invites } })
   })
 }

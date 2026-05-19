@@ -9,6 +9,7 @@ import { Separator } from "./ui/separator"
 
 import logo from "@/assets/img/logos/logo_01.png"
 import { ability } from "@/auth/auth"
+import { PendingInvites } from "./pending-invites"
 
 export async function Header() {
   const premissions = await ability();
@@ -31,6 +32,7 @@ export async function Header() {
 
       </div>
       <div className="flex items-center gap-4">
+        <PendingInvites />
         <ThemeSwither />
         <Separator orientation="vertical" className="h-5"/>
         <ProfileButton/>
